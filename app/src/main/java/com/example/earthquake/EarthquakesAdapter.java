@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,10 +22,25 @@ public class EarthquakesAdapter extends ArrayAdapter<Earthquakes> {
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View listItemView = convertView;
-        if (listItemView == null) {
-            listItemView = LayoutInflater.from(getContext()).inflate(
+        View earthquakeListView = convertView;
+        if (earthquakeListView == null) {
+            earthquakeListView = LayoutInflater.from(getContext()).inflate(
                     R.layout.list_item, parent, false);
         }
+        Earthquakes currentWord = getItem(position);
+        //Find TextViews in the list_item.xml
+        TextView tvPower = (TextView)earthquakeListView.findViewById(R.id.tvPower);
+        TextView tvPlace = (TextView)earthquakeListView.findViewById(R.id.tvPlace);
+        TextView tvDate = (TextView)earthquakeListView.findViewById(R.id.tvDate);
+
+        //Setup TextViews
+        tvPower.setText(currentWord.getPower());
+        tvPlace.setText(currentWord.getPlace());
+        tvDate.setText(currentWord.getDate());
+
+        LinearLayout container = (LinearLayout)earthquakeListView.findViewById(R.id.llContainer);
+
+        return earthquakeListView;
     }
+
 }
