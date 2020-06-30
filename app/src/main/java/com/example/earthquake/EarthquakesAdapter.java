@@ -11,12 +11,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EarthquakesAdapter extends ArrayAdapter<Earthquakes> {
 
-    public EarthquakesAdapter(@NonNull Context context, ArrayAdapter<Earthquakes> earthquakes) {
-        super(context, 0);
+    public EarthquakesAdapter(@NonNull Context context, ArrayList<Earthquakes> earthquakes) {
+        super(context, 0, earthquakes);
     }
 
     @NonNull
@@ -37,8 +38,6 @@ public class EarthquakesAdapter extends ArrayAdapter<Earthquakes> {
         tvPower.setText(currentWord.getPower());
         tvPlace.setText(currentWord.getPlace());
         tvDate.setText(currentWord.getDate());
-
-        LinearLayout container = (LinearLayout)earthquakeListView.findViewById(R.id.llContainer);
 
         return earthquakeListView;
     }
