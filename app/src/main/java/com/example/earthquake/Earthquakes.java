@@ -1,3 +1,5 @@
+package com.example.earthquake;
+
 public class Earthquakes {
 
     private String mPlace;
