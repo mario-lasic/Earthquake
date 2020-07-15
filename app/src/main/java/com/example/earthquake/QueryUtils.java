@@ -41,15 +41,12 @@ public final class QueryUtils {
             for (int i = 0; i < jsonArray.length(); i++){
                 JSONObject currentEarthquake = jsonArray.getJSONObject(i);
                 JSONObject properties = currentEarthquake.getJSONObject("properties");
-                String mag = properties.getString("mag");
+                Double mag = properties.getDouble("mag");
                 String place = properties.getString("place");
-                Long time = properties.optLong("time");
-                Date dateObject = new Date(time);
+                long time = properties.optLong("time");
 
-                SimpleDateFormat dateFormat = new SimpleDateFormat("DD MMM, yyyy");
-                String date = dateFormat.format(time);
 
-                Earthquakes earthquake = new Earthquakes(place, date, mag);
+                Earthquakes earthquake = new Earthquakes(place, time, mag);
                 earthquakes.add(earthquake);
             }
 
