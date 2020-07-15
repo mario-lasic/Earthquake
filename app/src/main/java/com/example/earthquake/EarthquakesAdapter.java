@@ -5,8 +5,10 @@ import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -84,8 +86,8 @@ public class EarthquakesAdapter extends ArrayAdapter<Earthquakes> {
         int magnitudeColor = getMagnitudeColor(currentEarthquake.getPower());
         magnitudeCircle.setColor(magnitudeColor);
 
-
         return earthquakeListView;
+
     }
 
     private int getMagnitudeColor(Double power) {

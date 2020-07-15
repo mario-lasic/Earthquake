@@ -5,14 +5,16 @@ public class Earthquakes {
     private String mPlace;
     private long mDate;
     private Double mPower;
+    private String mUrl;
 
 
 
     // Constructor
-    public Earthquakes(String place, long date, Double power) {
+    public Earthquakes(String place, long date, Double power, String url) {
         mPlace = place;
         mDate = date;
         mPower = power;
+        mUrl = url;
     }
 
     //Getters and Setters
@@ -40,4 +42,11 @@ public class Earthquakes {
         mPower = power;
     }
 
+    public String getUrl() {
+        return mUrl;
+    }
+
+    public void setUrl(String url) {
+        mUrl = url;
+    }
 }
