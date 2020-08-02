@@ -27,9 +27,10 @@ public class EarthquakesAdapter extends ArrayAdapter<Earthquakes> {
 
     private static final String String_Separator = " of ";
 
-    public EarthquakesAdapter(@NonNull Context context, ArrayList<Earthquakes> earthquakes) {
-        super(context, 0, earthquakes);
+    public EarthquakesAdapter(@NonNull Context context, @NonNull List<Earthquakes> objects) {
+        super(context, 0, objects);
     }
+
 
     @NonNull
     @Override
