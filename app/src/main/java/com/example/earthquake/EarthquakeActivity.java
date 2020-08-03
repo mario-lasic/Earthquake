@@ -15,6 +15,7 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,18 +26,23 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
     private static final String USGS_REQUSET_URL = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&orderby=time&minmag=6&limit=10";
     private EarthquakesAdapter mAdapter;
     private static final int EARTHQUAKE_LOADER_ID = 1;
+    private TextView mEmptyStateTextView;
+    private ListView earthquakeListView;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.list);
+        setContentView(R.layout.activity_main);
         /*EarthquakeAsyncTask task = new EarthquakeAsyncTask();
         task.execute(USGS_REQUSET_URL);*/
         LoaderManager loaderManager = getSupportLoaderManager();
         loaderManager.initLoader(EARTHQUAKE_LOADER_ID,null,this);
-
         mAdapter = new EarthquakesAdapter(this, new ArrayList<Earthquakes>());
+        mEmptyStateTextView = (TextView)findViewById(R.id.empty_view);
+        earthquakeListView = (ListView) findViewById(R.id.list);
+        earthquakeListView.setEmptyView(mEmptyStateTextView);
+
     }
 
     @NonNull
@@ -53,6 +59,8 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
             mAdapter.addAll(earthquakes);
             updateUi(earthquakes);
         }
+        mEmptyStateTextView.setText(R.string.no_earthquake);
+
     }
 
 
@@ -86,10 +94,6 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
      **/
 
     private void updateUi(List<Earthquakes> earthquakes) {
-
-        // Find a reference to the {@link ListView} in the layout
-        ListView earthquakeListView = (ListView) findViewById(R.id.list);
-
         // Set the adapter on the {@link ListView}
         // so the list can be populated in the user interface
         earthquakeListView.setAdapter(mAdapter);
